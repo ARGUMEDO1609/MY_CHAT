@@ -1,0 +1,8 @@
+ <%= turbo_frame_tag 'chats_controller' do %> 
+<main class='flex w-full h-screen bg-[#86198f]'> 
+  <%= render 'shared/side_bar'%>
+<section class= "flex flex-col items-center justify-center gap-5 h-screen"> 
+    <%= link_to "New chat", new_chat_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+</section>
+</main>
+<% end %>
