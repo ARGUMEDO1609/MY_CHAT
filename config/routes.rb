@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'add/user', to: 'chats#add_user'
   resources :chats
   devise_for :users
   root 'chats#index'

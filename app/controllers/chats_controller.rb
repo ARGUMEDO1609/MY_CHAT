@@ -21,7 +21,8 @@ class ChatsController < ApplicationController
 
    respond_to do |format|
     if @chat.save 
-    format.turbo_stream { render turbo_stream: turbo_stream.append('chats', partial: 'shared/chat', locals: {chat: @chat})}
+      UserChat.create(chat: @chat, user: current_user)
+    format.turbo_stream { render turbo_stream: turbo_stream.append("user_#{current_user.id}_chats", partial: 'shared/chat', locals: {chat: @chat})}
     else 
       format.turbo_stream { render turbo_stream: turbo_stream.replace('chat_form', partial:'chats/form', locals: {chat: @chat})}
     end
@@ -40,6 +41,14 @@ class ChatsController < ApplicationController
 
   def destroy
   end
+
+  def add_user
+    UserChat.create(chat_id: params[:chat_id], user_id: params[:user_id])
+ 
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("chat_show_#{params[:chat_id]}", partial: 'chats/chat', locals: {chat: Chat.find(params[:chat_id])})} 
+      end
+    end
 
   private
     def set_chat
