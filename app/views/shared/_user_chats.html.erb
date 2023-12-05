@@ -7,7 +7,7 @@
 
    <div class="flex flex-col px-5 gap-2 w-full" id="user_<%= current_user.id %>_chats">
      <% current_user.chats.all.each do |chat| %>
-     <%= render 'shared/chat', chat: chat %>
+     <%= render 'shared/chat', { chat: chat } %>
      <% end %>
   </div>
 </section>
