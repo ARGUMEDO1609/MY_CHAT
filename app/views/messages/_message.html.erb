@@ -5,11 +5,11 @@
 </div>
 
 <div class= "flex gap-3">
-  <%= button_to '#', class: 'text-sm font-medium bg-sky-700 text-white py-1 px-3 rounded', params: {message: message}, method: :get do %>
+  <%= link_to edit_chat_message_path(message, chat_id: message.chat), class: 'text-sm font-medium bg-sky-700 text-white py-1 px-3 rounded' do %>
     Edit
    <% end %>
 
-     <%= button_to '#', class: 'text-sm font-medium bg-red-700 text-white py-1 px-3 rounded', params: {message: message}, method: :delete do %>
+     <%= button_to chat_message_path(message.chat, message), class: 'text-sm font-medium bg-red-700 text-white py-1 px-3 rounded',  method: :delete do %>
     Delete
    <% end %>
   </div>

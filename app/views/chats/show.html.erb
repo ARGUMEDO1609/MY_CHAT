@@ -1,4 +1,6 @@
 <%= turbo_frame_tag 'chats_controller' do %>
+<%= turbo_stream_from 'chat_messages_channel' %>
+
   <main class='flex w-full h-screen bg-[#86198f]'> 
     <%= render 'shared/side_bar'%>
 
@@ -13,7 +15,11 @@
             <% end %>
           </div>
         </div>
-      </div>
+
+         <div class= "flex flex-col w-5/6 items-center justify-center">
+        <%= render 'messages/form', { chat: @chat, message: Message.new } %>
+         </div>
+       </div>
     </section>
   </main>
 <% end %>
