@@ -1,5 +1,5 @@
-
-<%= form_with(model: chat, class: "flex flex-col my-3 w-full") do |form| %>
+<div data-controller="form">   
+<%= form_with(model: chat, class: "flex flex-col my-3 w-full", data: {controller: 'form', action: 'submit->form#resetComponent'}) do |form| %>
   <% if chat.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
@@ -22,3 +22,4 @@
     <%= link_to 'Cancel', :back, class: "cursor-pointer p-2 text-sm text-white fond-semobold bg-red-500 rounded" %>
   </div>
 <% end %>
+</div>
